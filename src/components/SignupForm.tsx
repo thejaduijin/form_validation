@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import LoginForm from './LoginForm';
 
 function SignupForm() {
     const [formData, setFormData] = useState({ name: "", email: "", password: "" });
     const [error, setError] = useState("");
+    const [isSignedUp, setIsSignedUp] = useState(false);
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
@@ -11,13 +13,27 @@ function SignupForm() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
+        console.log(formData.password);
         if (!formData.name || !formData.email || !formData.password) {
             setError("All fields are required.");
             return;
         }
         setError("");
         console.log("Form Submitted:", formData);
+
+        localStorage.setItem("name", formData.name);
+        localStorage.setItem("email", formData.email);
+        localStorage.setItem("password", formData.password);
+        localStorage.setItem("checkSignUp", "true");
+        // localStorage.setItem("checkLogIn", "true");
+
         setFormData({ name: "", email: "", password: "" });
+        setIsSignedUp(true);
+    }
+
+
+    if (isSignedUp) {
+        return <LoginForm />;
     }
 
     return (

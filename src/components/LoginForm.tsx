@@ -1,9 +1,10 @@
 import { useState } from "react";
-
+import HomePage from "./HomePage";
 
 function LoginForm() {
     const [formData, setFormData] = useState({ email: "", password: "" });
     const [error, setError] = useState("");
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const handleChange = (e: any) => {
         const { name, value } = e.target;
@@ -16,9 +17,19 @@ function LoginForm() {
             setError("Both fields are required.");
             return;
         }
+        if (formData.email !== localStorage.getItem("email") || formData.password !== localStorage.getItem("password")) {
+            setError("Email or password is incorrect.");
+            return;
+        }
         setError("");
         console.log("Form Submitted:", formData);
+        localStorage.setItem("checkLogIn", "true");
         setFormData({ email: "", password: "" });
+        setIsLoggedIn(true);
+    }
+
+    if (isLoggedIn) {
+        return <HomePage />;
     }
 
     return (

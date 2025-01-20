@@ -13,7 +13,6 @@ function SignupForm() {
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        console.log(formData.password);
         if (!formData.name || !formData.email || !formData.password) {
             setError("All fields are required.");
             return;

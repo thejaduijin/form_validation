@@ -19,7 +19,7 @@ function SignupForm() {
             return;
         }
         setError("");
-        console.log("Form Submitted:", formData);
+        // console.log("Form Submitted:", formData);
 
         localStorage.setItem("name", formData.name);
         localStorage.setItem("email", formData.email);

@@ -1,5 +1,3 @@
-import React from 'react'
-
 function Card(props: any) {
     return (
         <div className="flex justify-center items-center h-screen">
